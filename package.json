@@ -1,0 +1,29 @@
+{
+  "name": "betacalendar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/augustusdog/betaCalendar.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/augustusdog/betaCalendar/issues"
+  },
+  "homepage": "https://github.com/augustusdog/betaCalendar#readme",
+  "devDependencies": {
+    "rollup": "^4.46.2"
+  },
+  "dependencies": {
+    "betacalendar": "^1.0.0"
+  }
+}

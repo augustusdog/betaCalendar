@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../styles/betaCalendar.css">
+        <script src="../src/betaCalendar.js"></script>
+    </head>
+    <body>
+
+        <div class="container">
+            <div class="sub-container">
+                <button id="arrow_left" style="grid-column: 1;" onclick="betaCalendar._changeDateRange('left')">←</button>
+                <h2 style="grid-column: 2;" id="date_range"></h2>
+                <button style="grid-column: 3;" onclick="betaCalendar._changeDateRange('right')">→</button>
+            </div>
+            <!-- Day form -->
+             <form id="day_form">
+             </form>
+            <!-- Time form -->
+             <form id="time_form">
+             </form>
+
+        </div>
+    <script>
+        // Load after html is loaded
+        document.addEventListener("DOMContentLoaded", function (){
+            betaCalendar.makeChanges(4, 10, 3, "14:30", "18:00", 30);
+        })
+    </script>
+    </body>
+</html> 
