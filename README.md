@@ -22,7 +22,14 @@ After installing, initialise the calendar using:
 * time_slot_interval (int): the time you wish to allocate to each booking. For example, if I expect each meeting to take 30 minutes I would use a value of 30.
 
 ## Screenshotted examples
+### Lower bound
+![lower bound](./examples/screenshots/lower_bound.png)
 
+### Mid bound
+![mid bound](./examples/screenshots/mid_bound.png)
+
+### Upper bound
+![upper bound](./examples/screenshots/upper_bound.png)
 
 ## Going forward
 If you decide to add any functionality / to make any improvements, please do. I will happily review any improvements and push them to the main branch/npm.
