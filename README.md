@@ -1,6 +1,6 @@
 # (Be-Ta)Calendar
 ## What is it?
-betaCalendar is a functional, albeit much more basic, alternative to flatPicker.
+betaCalendar is a functional, albeit much more basic, alternative to flatPicker. Is it be-tter or is it beta, I'll let you be the judge.
 
 ## Why should I care?
 betaCalendar makes it possible to easily integrate with the google calendar API for dates AND times. Additionally, I find it much easier to know what time slots are availalble to be booked.
