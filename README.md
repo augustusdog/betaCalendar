@@ -21,5 +21,8 @@ After installing, initialise the calendar using:
 * time_slot_end( (string): the time do you wish to take bookings until. For example, if I took bookings until 19:30, I would enter "19:30".
 * time_slot_interval (int): the time you wish to allocate to each booking. For example, if I expect each meeting to take 30 minutes I would use a value of 30.
 
+## Screenshotted examples
+
+
 ## Going forward
 If you decide to add any functionality / to make any improvements, please do. I will happily review any improvements and push them to the main branch/npm.
