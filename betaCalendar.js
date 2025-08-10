@@ -1,6 +1,6 @@
 // Load after html is loaded
 document.addEventListener("DOMContentLoaded", function (){
-    betaCalendar.makeChanges(4, 10, 3, "14:30", "18:00", 30);
+    betaCalendar.makeChanges(2, 10, 3, "14:30", "18:00", 30);
 })
 
 const betaCalendar = (function () {
@@ -42,6 +42,8 @@ const betaCalendar = (function () {
     // So, the first date is...
     const firstDate = new Date((`${month} ${day}, ${year}`))
 
+    console.log("first date in range was...", firstDate)
+
     
     if (arrow == "left"){
         // If arrow is left - so the client wishes to book a sooner date then check if arrow_left is greyed out.
@@ -70,9 +72,16 @@ const betaCalendar = (function () {
     if (arrow == "right"){newDate.setTime(currentFirstDate.getTime() + DATE_LENGTH_GLOBAL*one_day)}
     else{newDate.setTime(currentFirstDate.getTime() - DATE_LENGTH_GLOBAL*one_day)}
 
+    console.log("new date is ", newDate)
+
     // Compare newDate with today
     const today = new Date();
-    const new_start_date = Math.round(newDate - today) / one_day
+    today.setHours(0,0,0,0);
+    newDate.setHours(0,0,0,0)
+
+    const new_start_date = Math.round((newDate - today) / one_day)
+
+    console.log("new start date is ", new_start_date)
 
     // Clear existing radio buttons
     document.getElementById("day_form").innerHTML = "";
