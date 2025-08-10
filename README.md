@@ -1,15 +1,15 @@
 # (Be-Ta)Calendar
 ## What is it?
-betaCalendar is a functional, albeit much more basic, alternative to flatPicker.
+betaCalendar is a functional, albeit much more basic, alternative to flatPicker. Is it be-tter or is it beta, I'll let you be the judge.
 
-## What's it's Unique Selling Point? i.e... why should I care?
+## Why should I care?
 betaCalendar makes it possible to easily integrate with the google calendar API for dates AND times. Additionally, I find it much easier to know what time slots are availalble to be booked.
 
-## How to install
+## How can I install it?
 npm install betacalendar OR
 npm install augustusdog/betaCalendar#main
 
-## How to use
+## How can I use it?
 After installing, initialise the calendar using:
 
 `betaCalendar.makeChanges(start, end, window_size, time_slot_start, time_slot_end, time_slot_interval)`
@@ -21,8 +21,15 @@ After installing, initialise the calendar using:
 * time_slot_end( (string): the time do you wish to take bookings until. For example, if I took bookings until 19:30, I would enter "19:30".
 * time_slot_interval (int): the time you wish to allocate to each booking. For example, if I expect each meeting to take 30 minutes I would use a value of 30.
 
-## Screenshotted examples
+## Examples
+### Lower bound
+![lower bound](./examples/screenshots/lower_bound.png)
 
+### Mid bound
+![mid bound](./examples/screenshots/mid_bound.png)
+
+### Upper bound
+![upper bound](./examples/screenshots/upper_bound.png)
 
 ## Going forward
 If you decide to add any functionality / to make any improvements, please do. I will happily review any improvements and push them to the main branch/npm.
