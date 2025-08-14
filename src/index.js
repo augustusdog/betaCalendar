@@ -37,6 +37,8 @@ const betaCalendar = (function () {
     // So, the first date is...
     const firstDate = new Date((`${month} ${day}, ${year}`))
 
+    console.log("first date in range was...", firstDate)
+
     
     if (arrow == "left"){
         // If arrow is left - so the client wishes to book a sooner date then check if arrow_left is greyed out.
@@ -49,7 +51,10 @@ const betaCalendar = (function () {
 
       if(document.getElementById("arrow_right").style.color == 'grey'){console.log("can't move beyond these dates")}
       else{changeCalendarWindow(arrow, firstDate)}
-    }   
+    }
+    
+    //update which buttons are disabled
+    betaCalendar.updateDisabledTimes()
   }
 
   // This method is used to change theCalendarWindow (e.g from 4th to 6th of August to 7th to 9th of August)
@@ -65,9 +70,16 @@ const betaCalendar = (function () {
     if (arrow == "right"){newDate.setTime(currentFirstDate.getTime() + DATE_LENGTH_GLOBAL*one_day)}
     else{newDate.setTime(currentFirstDate.getTime() - DATE_LENGTH_GLOBAL*one_day)}
 
+    console.log("new date is ", newDate)
+
     // Compare newDate with today
     const today = new Date();
-    const new_start_date = Math.round(newDate - today) / one_day
+    today.setHours(0,0,0,0);
+    newDate.setHours(0,0,0,0)
+
+    const new_start_date = Math.round((newDate - today) / one_day)
+
+    console.log("new start date is ", new_start_date)
 
     // Clear existing radio buttons
     document.getElementById("day_form").innerHTML = "";
@@ -108,7 +120,8 @@ const betaCalendar = (function () {
     }
 
     // Get array of dates
-    const allDates = dateWhole.slice(0, -2).split(",");
+    const allDates = dateWhole.slice(0, -2).split(",").map(date => date.trim())
+
 
     // Get range of dates
     const dateRange = `${allDates[0]} - ${allDates[allDates.length - 1]}`
@@ -134,6 +147,7 @@ const betaCalendar = (function () {
         radio.setAttribute('type', 'radio');
         radio.setAttribute('name', "day");
         radio.setAttribute('id', date)
+        radio.setAttribute('value', date)
         count += 1
 
         const label = document.createElement('label');
@@ -145,6 +159,10 @@ const betaCalendar = (function () {
 
         day_form.appendChild(radio);
         day_form.appendChild(label);
+
+        if (count == 2){
+          radio.checked = true
+        }
     });
   }
 
@@ -210,6 +228,43 @@ const betaCalendar = (function () {
     });
   }
 
+  function updateDisabledTimes(){
+
+    const selectedDay = document.querySelector('input[name="day"]:checked')?.value
+    console.log(selectedDay)
+    console.log(typeof selectedDay)
+
+    const timeButtons = document.getElementById("time_form").getElementsByClassName("custom-button")
+
+    test_array1 = ["15:00", "16:00"]
+    test_array2 = ["15:30", "17:00"]
+
+    myDict = {
+      "18th August": test_array1, 
+      "19th August": test_array2
+    }
+
+
+    Array.from(timeButtons).forEach(label => {
+
+      // Reset labels
+      label.style.backgroundColor = ""
+      label.style.pointerEvents = "auto"
+      // Get time from label
+      const time = label.getAttribute("for")
+      // If busy at that time:
+      try{
+        if (myDict[selectedDay].includes(time)){
+          label.style.backgroundColor = "#ccc"
+          label.style.pointerEvents = "none"
+        }
+      } catch (err){
+        // do nothing
+      }
+    })
+  }
+
+
   // PUBLIC method
   function makeChanges(start_distance_from_today, max_distance_from_today, date_length, time_slot_min, time_slot_max, time_slot_interval) {
     
@@ -230,6 +285,10 @@ const betaCalendar = (function () {
     // Generate a new set of buttons
     generateDayRadioButtons(allDates);
     generateTimeRadioButtons(allDates, allTimes);
+
+
+    // Grey out buttons with busy times
+
 
     // Add logic to bound the calendar (e.g can only book from and to certain point)
     if (start_distance_from_today <= 2) {
